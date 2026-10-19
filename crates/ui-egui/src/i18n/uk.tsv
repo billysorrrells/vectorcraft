@@ -1367,7 +1367,7 @@
 	Japanese	Японська
 	Join	З’єднати
 	Join Our Discord	Приєднуйтесь до нашого Discord
-	Join our Discord	Приєднуйтесь до нашого Discord
+	BilloTech Toolkit	Приєднуйтесь до нашого Discord
 	Open the BilloTech toolkit (billysorrells.com/billotech)	Приєднуйтесь до спільноти BilloTech Discord (billysorrells.com/billotech)
 	Join the lines of each paragraph	Поєднувати рядки кожного абзацу
 	Join Tool	Інструмент «З’єднання»
@@ -3194,7 +3194,7 @@ effect	Points	Точки
 	Billo Vector on billysorrells.com/billotech	Billo Vector на billysorrells.com/billotech
 	Agent access	Billo Vector на GitHub
 	Vectors	Вектори
-	Version {version} — open-source vector illustration in pure Rust.	Версія {version} — векторне малювання з відкритим кодом, написане на Rust.
+	Version {version} — BilloTech vector illustration in pure Rust.	Версія {version} — векторне малювання з відкритим кодом, написане на Rust.
 	Version:	Версія:
 	Vertical	Вертикально
 	Vertical %	По вертикалі, %

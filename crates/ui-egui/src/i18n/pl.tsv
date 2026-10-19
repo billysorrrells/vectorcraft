@@ -1740,7 +1740,7 @@ lighting	Light	Światło
 	Multiple objects	Wiele obiektów
 	Graphics: {adapter}	Grafika: {adapter}
 	Part of BilloTech. MIT OR Apache-2.0. Fonts: Source Sans 3, Inter, JetBrains Mono (OFL). Icons: Lucide (ISC) + Billo Vector.	Część BilloTech. MIT LUB Apache-2.0. Czcionki: Source Sans 3, Inter, JetBrains Mono (OFL). Ikony: Lucide (ISC) + Billo Vector.
-	Version {version} — open-source vector illustration in pure Rust.	Wersja {version} — otwartoźródłowa grafika wektorowa w czystym Ruście.
+	Version {version} — BilloTech vector illustration in pure Rust.	Wersja {version} — otwartoźródłowa grafika wektorowa w czystym Ruście.
 	Align to Page	Wyrównaj do strony
 	Smooth Color	Gładki kolor
 	Specified Distance	Określona odległość
@@ -3357,7 +3357,7 @@ effect	Regular	Normalny
 	Welcome to Billo Vector	Witamy w Billo Vector
 	BilloTech website	Strona BilloTech
 	Discord	Discord
-	Join our Discord	Dołącz do naszego Discorda
+	BilloTech Toolkit	Dołącz do naszego Discorda
 	Open the BilloTech toolkit (billysorrells.com/billotech)	Dołącz do społeczności BilloTech na Discordzie (billysorrells.com/billotech)
 	Source code on GitHub	Kod źródłowy w serwisie GitHub
 	All Tools	Wszystkie narzędzia
