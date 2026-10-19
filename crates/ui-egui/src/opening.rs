@@ -31,7 +31,7 @@ pub struct Opening {
 /// Does opening happen off the UI thread here? Not on wasm (no threads), in unit tests (they look
 /// at the document right after asking for it), or with `VECTORCRAFT_SYNC_OPEN` set.
 pub fn available() -> bool {
-    !(cfg!(target_arch = "wasm32") || cfg!(test) || std::env::var_os("VECTORCRAFT_SYNC_OPEN").is_some())
+    !(cfg!(target_arch = "wasm32") || cfg!(test) || std::env::var_os("BILLO VECTOR_SYNC_OPEN").is_some())
 }
 
 /// Decode `bytes`, the file at `path`, read its linked files and lay out its type on a thread of its

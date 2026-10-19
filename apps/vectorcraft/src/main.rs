@@ -119,9 +119,9 @@ impl App {
             // eframe can't give a window a new device: the user saves and starts again.
             self.graphics_lost = self.app.graphics_lost(&why);
             self.app.status(if self.graphics_lost {
-                "The graphics device was lost: unsaved changes are kept for Data Recovery. Save your documents and restart VectorCraft"
+                "The graphics device was lost: unsaved changes are kept for Data Recovery. Save your documents and restart Billo Vector"
             } else {
-                "The graphics device was lost: save your documents and restart VectorCraft"
+                "The graphics device was lost: save your documents and restart Billo Vector"
             });
         }
         if self.graphics_lost && ctx.input(|i| i.viewport().close_requested()) {
@@ -188,13 +188,13 @@ fn discard_marked_text() {
 /// Where UI preferences live: ~/Library/Application Support/VectorCraft (macOS),
 /// %APPDATA%\VectorCraft (Windows), $XDG_CONFIG_HOME or ~/.config/vectorcraft (Linux).
 fn prefs_path() -> Option<std::path::PathBuf> {
-    prefs_dir::prefs_path_for("VectorCraft", "vectorcraft")
+    prefs_dir::prefs_path_for("Billo Vector", "vectorcraft")
 }
 
 /// The same place under the project's former name (DrawCraft): read once if there are no
 /// VectorCraft preferences yet, so settings survive the rename.
 fn legacy_prefs_path() -> Option<std::path::PathBuf> {
-    prefs_dir::prefs_path_for("DrawCraft", "drawcraft")
+    prefs_dir::prefs_path_for("Billo Draw", "drawcraft")
 }
 
 /// Where the log files live: `logs` in the preferences folder (see `logging`).
@@ -204,7 +204,7 @@ fn log_dir() -> Option<std::path::PathBuf> {
 
 /// Runs without preferences (`VECTORCRAFT_NO_PREFS`, agents' test runs) neither read nor write them.
 fn prefs_enabled() -> bool {
-    std::env::var_os("VECTORCRAFT_NO_PREFS").is_none()
+    std::env::var_os("BILLO VECTOR_NO_PREFS").is_none()
 }
 
 /// The saved UI preferences, read before the window opens (they hold its size and position).
@@ -598,7 +598,7 @@ fn custom_titlebar(saved: Option<&vectorcraft_ui_egui::UiState>) -> bool {
 fn native_options(custom_titlebar: bool) -> eframe::NativeOptions {
     eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
-            .with_title("VectorCraft")
+            .with_title("Billo Vector")
             .with_inner_size(window::DEFAULT_SIZE)
             .with_min_inner_size(window::MIN_SIZE)
             .with_drag_and_drop(true)
@@ -620,9 +620,9 @@ fn main() -> std::process::ExitCode {
     let mut control = automation_args::ControlArg::default();
     let root_env = |name: &str| std::env::var_os(name).filter(|v| !v.is_empty()).map(std::path::PathBuf::from);
     let mut roots_args =
-        automation_args::AutomationArgs::new(root_env("VECTORCRAFT_AUTOMATION_READ_ROOT"), root_env("VECTORCRAFT_AUTOMATION_WRITE_ROOT"));
+        automation_args::AutomationArgs::new(root_env("BILLO VECTOR_AUTOMATION_READ_ROOT"), root_env("BILLO VECTOR_AUTOMATION_WRITE_ROOT"));
     let mut files = Vec::new();
-    let mut in_window_menus = std::env::var_os("VECTORCRAFT_IN_WINDOW_MENUS").is_some_and(|v| !v.is_empty() && v != "0");
+    let mut in_window_menus = std::env::var_os("BILLO VECTOR_IN_WINDOW_MENUS").is_some_and(|v| !v.is_empty() && v != "0");
     let mut args = std::env::args().skip(1);
     while let Some(a) = args.next() {
         match roots_args.consume(&a, &mut args).and_then(|root| if root { Ok(true) } else { control.consume(&a, &mut args) }) {
@@ -646,7 +646,7 @@ fn main() -> std::process::ExitCode {
     // After the arguments: `--control` and `--version` win over a bad environment value.
     let control_port = match control.port {
         Some(port) => Some(port),
-        None => match automation_args::env_control_port(std::env::var_os("VECTORCRAFT_CONTROL_PORT")) {
+        None => match automation_args::env_control_port(std::env::var_os("BILLO VECTOR_CONTROL_PORT")) {
             Ok(port) => port,
             Err(e) => {
                 eprintln!("vectorcraft: {e}");
@@ -671,7 +671,7 @@ fn main() -> std::process::ExitCode {
     if let Some(logger) = logger {
         match log_dir().filter(|_| prefs_enabled()) {
             Some(dir) => match logger.attach_dir(&dir) {
-                Ok(path) => log::info!("VectorCraft {}, log file {}", env!("CARGO_PKG_VERSION"), path.display()),
+                Ok(path) => log::info!("Billo Vector {}, log file {}", env!("CARGO_PKG_VERSION"), path.display()),
                 // Standard error only by now (`attach_dir` gave up on the file); unlike `eprintln!`, never panics.
                 Err(e) => log::warn!("no log file: {e}"),
             },
@@ -788,7 +788,7 @@ fn main() -> std::process::ExitCode {
     // A panic that ends the window (egui-wgpu's own, #502) is caught here: never a crash.
     let outcome = vectorcraft_engine::guard::catch_panic(|| {
         eframe::run_native(
-            "VectorCraft",
+            "Billo Vector",
             options,
             Box::new(move |cc| {
                 let mut app = VectorcraftApp::new(Session::new(), services(cc.winit_window().cloned(), cc.egui_ctx.clone()));
@@ -812,7 +812,7 @@ fn main() -> std::process::ExitCode {
                 }
                 // Data Recovery copies live next to the preferences too (none for runs without
                 // preferences, such as agents' test runs, unless the recoveryFolder preference is set).
-                if std::env::var_os("VECTORCRAFT_NO_PREFS").is_none() {
+                if std::env::var_os("BILLO VECTOR_NO_PREFS").is_none() {
                     let recovery = prefs_path().and_then(|p| Some(p.parent()?.join("Data Recovery").to_string_lossy().to_string()));
                     app.session.recovery.set_default_folder(recovery);
                 }
@@ -830,7 +830,7 @@ fn main() -> std::process::ExitCode {
                             ""
                         };
                         app.status(format!(
-                            "The graphics processor tried first couldn't show the window, so VectorCraft started again on {summary}{hint}"
+                            "The graphics processor tried first couldn't show the window, so Billo Vector started again on {summary}{hint}"
                         ));
                     }
                     app.graphics_adapter = Some(summary);
@@ -879,7 +879,7 @@ fn main() -> std::process::ExitCode {
     match outcome {
         Ok(()) => std::process::ExitCode::SUCCESS,
         Err(e) => {
-            log::error!("VectorCraft stopped: {e}");
+            log::error!("Billo Vector stopped: {e}");
             std::process::ExitCode::FAILURE
         }
     }
@@ -980,6 +980,6 @@ mod tests {
         assert!(!plist.contains("<key>NSDocumentClass</key>"), "not an NSDocument app: AppKit would refuse the files");
         let types = plist.matches("<key>CFBundleTypeName</key>").count();
         assert!(types > 1 && plist.matches("<key>LSHandlerRank</key>").count() == types, "every document type has a rank");
-        assert_eq!(plist.matches("<string>Owner</string>").count(), 2, "only VectorCraft documents and templates are owned");
+        assert_eq!(plist.matches("<string>Owner</string>").count(), 2, "only Billo Vector documents and templates are owned");
     }
 }

@@ -48,14 +48,14 @@ use eframe::wgpu::{self, Backend, Backends, DeviceType, PowerPreference};
 /// The adapters a restart leaves out, those the window failed on, as comma-separated [`key`]s
 /// (`Vulkan:1002:164e`, `Metal:Intel Iris Pro Graphics`). Set by the app itself when it starts
 /// again.
-pub const SKIP_ENV: &str = "VECTORCRAFT_GPU_SKIP";
+pub const SKIP_ENV: &str = "BILLO VECTOR_GPU_SKIP";
 
 /// wgpu's variable for choosing an adapter by (part of) its name, any case.
 const NAME_ENV: &str = "WGPU_ADAPTER_NAME";
 
 /// Where to read how to choose another adapter, for the error that ends the app.
 const HELP: &str =
-    "to choose a graphics adapter, see https://github.com/storytold/vectorcraft/blob/main/docs/development.md#desktop-graphics-processor";
+    "to choose a graphics adapter, see https://billysorrells.com/billotech/free/";
 
 /// Frames the UI ran before the failure, below which it was still starting up. The failure in
 /// #502 came on the first or second frame; later, the adapter has proved itself, and a lost

@@ -265,7 +265,7 @@ pub fn show(app: &mut VectorcraftApp, ui: &mut Ui) {
     }
     if !app.canvas.worker_started {
         app.canvas.worker_started = true;
-        if std::env::var_os("VECTORCRAFT_SYNC_RENDER").is_none() {
+        if std::env::var_os("BILLO VECTOR_SYNC_RENDER").is_none() {
             app.canvas.worker = crate::render_worker::Worker::spawn(ui.ctx().clone());
         }
     }
@@ -486,7 +486,7 @@ pub fn show(app: &mut VectorcraftApp, ui: &mut Ui) {
             }
             // The glyph cursors are drawn here; General › Use Precise Cursors (the session turns the drawing tools' pointers
             // into crosshairs, `Cursor::precise`) needs no handling. VECTORCRAFT_SYSTEM_CURSORS opts out of the glyphs.
-            let custom = std::env::var_os("VECTORCRAFT_SYSTEM_CURSORS").is_none();
+            let custom = std::env::var_os("BILLO VECTOR_SYSTEM_CURSORS").is_none();
             // User Interface › Scale Cursor Proportional to UI: the glyphs grow with UI Scaling;
             // off, they keep their size.
             let ui_scale = if app.session.prefs.scale_cursor_with_ui { 1.0 } else { ui.ctx().zoom_factor() };
@@ -2021,7 +2021,7 @@ fn home(app: &mut VectorcraftApp, ui: &mut Ui, rect: egui::Rect) {
     let inner = rect.shrink2(vec2((rect.width() - 820.0).max(40.0) / 2.0, 60.0));
     let mut child = ui.new_child(egui::UiBuilder::new().max_rect(inner).layout(egui::Layout::top_down(egui::Align::Min)));
     let ui = &mut child;
-    ui.label(egui::RichText::new(tl!("Welcome to VectorCraft")).font(theme::semibold(26.0)).color(t.text));
+    ui.label(egui::RichText::new(tl!("Welcome to Billo Vector")).font(theme::semibold(26.0)).color(t.text));
     ui.add_space(4.0);
     ui.label(egui::RichText::new(tl!("Vector illustration — fast, open, scriptable.")).size(14.0).color(t.text_dim));
     ui.add_space(22.0);
